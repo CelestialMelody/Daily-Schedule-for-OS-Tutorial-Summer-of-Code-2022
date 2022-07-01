@@ -34,7 +34,7 @@ OS Training Camp Daily Documents
 
 ---
 
-<h3 id="day-0">Day 0 2022/6/30</h3>
+<h2 id="day-0">Day 0 2022/6/30</h2>
 
 #### 事件一：简单配置一下仓库，决定接下来rust的学习
 
