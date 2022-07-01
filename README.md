@@ -60,3 +60,31 @@ OS Training Camp Daily Documents
 #### 规划
 
 - 赶紧入门rust呀
+
+<h2 id="day-1">Day 1 2022/7/1</h2>
+
+[今日笔记](./note/day one/Day one.md)
+
+#### Rust学习
+
+- 学习rust圣经+rust-by-prctice 提交到[rust-begin ](https://github.com/CelestialMelody/rust-begin)；完成练习如下：
+  - char-bool-unit
+  - functions
+  - numbers
+  - ownership
+  - statement-exprissions
+
+- [rust-begin-rustlings ](https://github.com/CelestialMelody/rust-begin-rustlings) 完成练习如下：
+  - variables
+  - functions
+
+
+#### 其他日常
+
+这两天中午都吃的肯德基，好饱呀。。。哈哈哈哈
+
+收到了[春季清华OS课程](https://github.com/LearningOS/rust-based-os-comp2022/blob/main/relatedinfo.md)的链接，还没来得及看呢（现在点开看一眼
+
+#### 规划
+
+- 这周赶紧看完基础入门

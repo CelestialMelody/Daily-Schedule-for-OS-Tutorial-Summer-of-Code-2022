@@ -92,6 +92,16 @@
 
 - 悬垂引用
 
+- Rust 中的字符是 Unicode 类型，因此每个字符占据 4 个字节内存空间，但是在字符串中不一样，字符串是 UTF-8 编码，也就是字符串中的字符所占的字节数是变化的(1 - 4)
+
+- 字符串replace：`replace()`返回新的字符串；`replacen()`返回新的字符串；`replace_range()`仅适用于 `String` 类型，**不**返回新的字符串
+
+- 与字符串删除相关的方法有 4 个，他们分别是 `pop()`，`remove()`，`truncate()`，`clear()`。这四个方法仅适用于 `String` 类型。
+
+- 使用 `+` 或者 `+=` 连接字符串，要求右边的参数必须为字符串的切片引用（Slice)类型。其实当调用 `+` 的操作符时，相当于调用了 `std::string` 标准库中的 [`add()`](https://doc.rust-lang.org/std/string/struct.String.html#method.add) 方法，这里 `add()` 方法的第二个参数是一个引用的类型。因此我们在使用 `+`， 必须传递切片引用类型。不能直接传递 `String` 类型。**`+` 和 `+=` 都是返回一个新的字符串。所以变量声明可以不需要 `mut` 关键字修饰**。另外，`+`**左边的String所有权转移**
+
+- Rust `drop()` 与 C++：*Resource Acquisition Is Initialization (RAII)*
+
 
 
 ### 其他	
