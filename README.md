@@ -1,4 +1,4 @@
-# Daily-Schedule-for-OS-Tutorial-Summer-of-Code-2022
+# Daily Schedule for OS Training Camp 2022
 
 OS Training Camp Daily Documents
 
