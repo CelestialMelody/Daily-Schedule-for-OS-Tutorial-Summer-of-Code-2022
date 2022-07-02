@@ -63,7 +63,7 @@ OS Training Camp Daily Documents
 
 <h2 id="day-1">Day 1 2022/7/1</h2>
 
-[今日笔记](./note/day one/Day one.md)
+[今日笔记](https://github.com/CelestialMelody/daily_schedule_for_os_traning_camp_2022/blob/main/note/day%20one/Day%20one.md)
 
 #### Rust学习
 
@@ -93,7 +93,7 @@ OS Training Camp Daily Documents
 
 <h2 id="day-2">Day 2 2022/7/2</h2>
 
-[今日笔记](./note/day two/Day two.md)
+[今日笔记](https://github.com/CelestialMelody/daily_schedule_for_os_traning_camp_2022/blob/main/note/day%20two/Day%20two.md)
 
 #### Rust学习
 
