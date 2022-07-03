@@ -14,13 +14,13 @@ OS Training Camp Daily Documents
 
 **七月**
 
-| Mon | Tues | Wed |         Thur         |          Fri          |         Sat         |  Sun  |
-| :-: | :--: | :-: | :------------------: | :-------------------: | :-----------------: | :---: |
-|     |      |     | 30<br>([D0](#day-0)) | 1 <br> ([D1](#day-1)) | 2<br>([D2](#day-2)) | 3<br> |
-|     |      |     |                      |                       |                     |       |
-|     |      |     |                      |                       |                     |       |
-|     |      |     |                      |                       |                     |       |
-|     |      |     |                      |                       |                     |       |
+| Mon  | Tues | Wed  |         Thur         |          Fri          |         Sat         |         Sun         |
+| :--: | :--: | :--: | :------------------: | :-------------------: | :-----------------: | :-----------------: |
+|      |      |      | 30<br>([D0](#day-0)) | 1 <br> ([D1](#day-1)) | 2<br>([D2](#day-2)) | 3<br>([D3](#day-3)) |
+|      |      |      |                      |                       |                     |                     |
+|      |      |      |                      |                       |                     |                     |
+|      |      |      |                      |                       |                     |                     |
+|      |      |      |                      |                       |                     |                     |
 
 **八月**
 
@@ -113,3 +113,23 @@ OS Training Camp Daily Documents
 - rust 引用切片与 golang 切片类似，rust 引用底层是切片的第一个字是指向数据的指针，第二个字是切片的长度，golang 还多了一个 cap。所以 rust 引用切片大小为 2 个字，golang 切片估计是 3 个字。这些数据的类型大小均与 cpu 相关（联系到了 golang 到了 ╰(_°▽°_)╯
 - 今天做一个简单的链表题（原谅我算法太差了，开始从基础做），顺便把 cpp `delete`和析构函数复习了一下 👍
 - 讲道理，我很想把 go，rust，cpp，java，javascript，python 都好好看看，不过没有那么多时间呀，而且学习 rust 效率也没那么高，看完章节配合 rust-by-practice 练习，花时间挺长的(┬┬﹏┬┬)，，，希望这个暑假至少把 golang 和 rust，还有操作系统基础打好把，，，，太菜了 ಥ_ಥ
+
+<h2 id="day-3">Day 3 2022/7/3</h2>
+
+- 今日配置麻了，没有做什么事，呜呜呜
+  实验0之前生成早了，与最新的不一样了，，，不过大概了解了怎么连接远程仓库
+
+  ````
+  git remote add upstream 远程仓库链接
+  git fetch upstream
+  git checkout -b foo
+  git branch -D main
+  git checkout -t origin/main
+  git reset --hard  upstream/main
+  git push -f
+  ````
+
+- 新的要求来了：rustlings用github codespace的形式了(｢・ω・)｢
+  虽然之前我自己fork了一份然后在本地做了，不过反正我也没做多少，也还好
+- 总感觉自己过不了第一阶段了，呜呜呜
+
