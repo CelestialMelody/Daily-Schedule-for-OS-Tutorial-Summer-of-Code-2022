@@ -8,6 +8,11 @@
   fn test_type<T>(_: T) {
     println!("{:?}", { type_name::<T>() });
   }
+  
+  // 改进 防止所有权转移
+  fn type_of<T>(_: &T) {
+      println!("{:?}", { type_name::<T>() });
+  }
   ```
 
 **枚举**
@@ -206,7 +211,7 @@
 
 - 使用枚举实现list `ref` 与 `*` 与 `&`
 
-  ```
+  ```rust
   // 填空，让代码运行
   use crate::List::*;
   
@@ -236,7 +241,7 @@
       fn len(&self) -> u32 {
           match *self {
               // 这里我们不能拿走 tail 的所有权，因此需要获取它的引用
-              Cons(_, ref tail) => 1 + tail.len(),
+              Cons(_, ref tail) => 1 + tail.len(), // 模式匹配 解构tail （ref 声明为引用）
               // 空链表的长度为 0
               Nil => 0,
           }
@@ -276,7 +281,7 @@
 
   另一种
 
-  ```
+  ```rust
   // 返回链表的长度
   fn len(&self) -> u32 {
       match self {
@@ -304,3 +309,77 @@
   - 在`len`方法和`stringify方法`中`match`：`self`不加`*`进行解引用的话，类型就是`&List`；这时`tail`不加`ref`，类型就是`&Box<List>`。
   - 如果加了`*`对`self`解引用，而又不加`ref`，那么`tial`的类型就是`Box<List>`，所有权就发生了转移。
 
+- **匹配守卫**
+
+  ```rust
+  matches!(bar, Some(x) if x > 2)
+  ```
+
+- `if let`
+
+  ```rust
+  fn main() {
+      let age = Some(30);
+      println!("在匹配前，age是{:?}", age);
+      if let Some(x) = age {
+          println!("匹配出来的x是{}", x); // 解构age ，x去匹配
+          println!("age: {:?}", age);
+      }
+  
+      println!("在匹配后，age是{:?}", age);
+  }
+  ```
+
+- match 模式绑定
+
+  ```rust
+  fn main() {
+      let x = Some(5);
+      let y = 10;
+  
+      match x {
+          Some(50) => println!("Got 50"),
+          Some(y) => println!("Matched, y = {:?}", y),
+          _ => println!("Default case, x = {:?}", x),
+      }
+  
+      println!("at the end: x = {:?}, y = {:?}", x, y);
+  }
+  
+  ```
+
+  第二个匹配分支中的模式引入了一个新变量 `y`，它会匹配任何 `Some` 中的值。因为这里的 `y` 在 `match` 表达式的作用域中，而不是之前 `main` 作用域中，所以这是一个新变量，不是开头声明为值 10 的那个 `y`。这个新的 `y` 绑定会匹配任何 `Some` 中的值，在这里是 `x` 中的值。因此这个 `y` 绑定了 `x` 中 `Some` 内部的值。这个值是 5，所以这个分支的表达式将会执行并打印出 `Matched，y = 5`。
+
+- 解构并分解值
+
+  ```rust
+  struct Point {
+      x: i32,
+      y: i32,
+      string: String,
+  }
+  
+  fn main() {
+      let p = Point {
+          x: 0,
+          y: 7,
+          string: "hello".to_string(),
+      };
+  
+      let Point {
+          x: a,
+          y: b,
+          string: s, // 所有权转移
+  
+                     // 防止所有权转移
+                     // string: ref s,
+      } = p;
+      println!("{}", p.x); // x不会转移所有权？-> 应该是基本类型 实现了Copy
+      println!("{}", p.string); // p.string 所有权转移， println! 使用借用 故报错为“value borrowed here after move”
+  
+      // let mut mutable_p = p;
+      // println!("point is ({}, {})", p.x, p.y); // 所有权已经
+  }
+  ```
+
+  
