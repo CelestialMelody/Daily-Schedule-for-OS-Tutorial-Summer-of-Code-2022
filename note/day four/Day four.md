@@ -321,7 +321,7 @@
   fn main() {
       let age = Some(30);
       println!("在匹配前，age是{:?}", age);
-      if let Some(x) = age {
+      if let Some(x) = age { // 若这里x写age会发生覆盖
           println!("匹配出来的x是{}", x); // 解构age ，x去匹配
           println!("age: {:?}", age);
       }
