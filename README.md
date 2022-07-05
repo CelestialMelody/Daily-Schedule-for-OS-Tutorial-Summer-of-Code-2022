@@ -159,7 +159,7 @@ OS Training Camp Daily Documents
 
 <h2 id="day-5">Day 5 2022/7/5</h2>
 
-
+[今日笔记](https://github.com/CelestialMelody/daily_schedule_for_os_traning_camp_2022/blob/main/note/day%20five/Day%20five.md)
 
 今天是摸鱼的一天呢(┬┬﹏┬┬)
 
