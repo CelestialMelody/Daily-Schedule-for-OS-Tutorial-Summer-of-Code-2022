@@ -6,7 +6,7 @@
 
 - Rust 中有一个约定俗称的规则，使用 `new` 来作为构造器的名称，出于设计上的考虑，Rust 特地没有用 `new` 作为关键字，因为是函数，所以不能用 `.` 的方式来调用，需要用 `::` 来调用
 
--  const 泛型，定义的语法是 `const N: usize`，表示 const 泛型 `N` ，它基于的值类型是 `usize`。——使rust有利于矩阵运算
+- const 泛型，定义的语法是 `const N: usize`，表示 const 泛型 `N` ，它基于的值类型是 `usize`。——使rust有利于矩阵运算
 
 - Rust 通过在编译时进行泛型代码的 **单态化**(*monomorphization*)来保证效率。单态化是一个通过填充编译时使用的具体类型，将通用代码转换为特定代码的过程。我们可以使用泛型来编写不重复的代码，而 Rust 将会为每一个实例编译其特定类型的代码。这意味着在使用泛型时没有运行时开销；当代码运行，它的执行效率就跟好像手写每个具体定义的重复代码一样。这个单态化过程正是 Rust 泛型在运行时极其高效的原因。
 
@@ -32,7 +32,7 @@
 
   
 
--   特殊情况——`collection`为引用切片（一般在函数调用过程中）
+- 特殊情况——`collection`为引用切片（一般在函数调用过程中）
 
   ```rust
   // 堆分配耗时
@@ -117,4 +117,59 @@
   }
   ```
 
+- ```rust
+  struct Point<T: Add<T, Output = T>> { //限制类型T必须实现了Add特征，否则无法进行+操作。
+      x: T,
+      y: T,
+  }
   
+  impl<T: Add<T, Output = T>> Add for Point<T> { // Output ??? 做类型定义声明？
+      type Output = Point<T>; // 类型定义
+  
+      fn add(self, p: Point<T>) -> Point<T> {
+          Point{
+              x: self.x + p.x,
+              y: self.y + p.y,
+          }
+      }
+  }
+  ```
+
+- 通过 `&` 引用或者 `Box<T>` 智能指针的方式来创建特征对象；`dyn` 关键字只用在特征对象的类型声明上，在创建时无需使用 `dyn`
+
+- 特征对象（多种）与（泛型）特征约束（多种取一）
+
+  ```rust
+  // 通过特征对象实现
+  pub struct Screen {
+      // 存储了一个动态数组，里面元素的类型是 Draw 特征对象：
+      // Box<dyn Draw>，任何实现了 Draw 特征的类型，都可以存放其中。
+      pub components: Vec<Box<dyn Draw>>,
+  }
+  
+  impl Screen {
+      pub fn run(&self) {
+          for component in self.components.iter() {
+              component.draw();
+          }
+      }
+  }
+  
+  // 通过泛型实现
+  pub struct Screen<T: Draw> {
+      // 存储了类型为 T 的元素
+      pub components: Vec<T>,
+  }
+  
+  // 在 Screen 中使用特征约束让 T 实现了 Draw 特征，进而可以调用 draw 方法
+  impl<T> Screen<T>
+      where T: Draw { // where 特征约束
+      pub fn run(&self) {
+          for component in self.components.iter() {
+              component.draw();
+          }
+      }
+  }
+  ```
+
+  - 
