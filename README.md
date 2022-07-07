@@ -17,7 +17,7 @@ OS Training Camp Daily Documents
 |         Mon          |         Tues         |         Wed          |         Thur         |          Fri          |         Sat         |         Sun         |
 | :------------------: | :------------------: | :------------------: | :------------------: | :-------------------: | :-----------------: | :-----------------: |
 |                      |                      |                      | 30<br>([D0](#day-0)) | 1 <br> ([D1](#day-1)) | 2<br>([D2](#day-2)) | 3<br>([D3](#day-3)) |
-| 4<br/>([D4](#day-4)) | 5<br/>([D5](#day-5)) | 6<br/>([D6](#day-6)) |                      |                       |                     |                     |
+| 4<br/>([D4](#day-4)) | 5<br/>([D5](#day-5)) | 6<br/>([D6](#day-6)) | 7<br/>([D7](#day-7)) |                       |                     |                     |
 |                      |                      |                      |                      |                       |                     |                     |
 |                      |                      |                      |                      |                       |                     |                     |
 |                      |                      |                      |                      |                       |                     |                     |
@@ -192,3 +192,17 @@ OS Training Camp Daily Documents
 #### 规划
 
 明天开始搞剩下了rustlings，不过我看rustlngs除了基础部分还有多线程编程，明天看完Rust圣经基础部分后，把能做的rustlings都完成了，剩下的不明白的再看Rust圣经高级部分.
+
+
+
+<h2 id="day-7">Day 6 2022/7/7</h2>
+
+[今日笔记](https://github.com/CelestialMelody/daily_schedule_for_os_traning_camp_2022/blob/main/note/day%20seven/Day%20seven.md)
+
+#### rust学习
+
+基础部分基本看完了，但是rustlings今天还没怎么做（指今天摸鱼了(ノへ￣、)
+
+#### 规划
+
+明天开始搞剩下了rustlings。。。
