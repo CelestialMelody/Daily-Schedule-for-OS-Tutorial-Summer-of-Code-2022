@@ -194,9 +194,32 @@ fn main() {
 
 
 
-- ```
-  cargo doc --open
+
+
+```bash
+cargo doc --open
+```
+
+
+
+- 格式化输出-具名参数：带名称的参数必须放在不带名称参数的后面
+
+- ```rust
+  // 使用x作为占位符输出内容，同时使用5作为宽度
+  println!("Hello {1:0$}!", 5, "x");
+  
+  // println!("Hello {1:0$}!", "x", 5); // wrong 1 可能是指定的宽度 usize --> 其实是位置参数
+  
+  // {:.*}接收两个参数，第一个是精度，第二个是被格式化的值 => Hello abc!
+  println!("Hello {:.*}!", 3, "abcdefg");
+  
+  // 这里的2好像没有什么意义
+  println!("{:2e}", 1000000000); 
+  println!("{:2E}", 1000000000); 
+  
+  // {使用{转义，}使用} => Hello {}
+  println!("Hello {{}}");
+  println!("Hello {\{\}}"); // wrong
   ```
 
-
-
+- 
