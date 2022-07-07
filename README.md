@@ -195,7 +195,7 @@ OS Training Camp Daily Documents
 
 
 
-<h2 id="day-7">Day 6 2022/7/7</h2>
+<h2 id="day-7">Day 7 2022/7/7</h2>
 
 [今日笔记](https://github.com/CelestialMelody/daily_schedule_for_os_traning_camp_2022/blob/main/note/day%20seven/Day%20seven.md)
 
@@ -203,6 +203,12 @@ OS Training Camp Daily Documents
 
 基础部分基本看完了，但是rustlings今天还没怎么做（指今天摸鱼了(ノへ￣、)
 
+类型转换，那部分属实有点看不懂(┬┬﹏┬┬)
+
 #### 规划
 
 明天开始搞剩下了rustlings。。。
+
+可以把lab看起来了(每日1h?)
+
+rv任务:阅读《计算机组成与设计（RISC-V版）》第一、二章;自学RISC-V手册：一本开源指令集的指南(重点是第10章)
