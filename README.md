@@ -17,7 +17,7 @@ OS Training Camp Daily Documents
 |         Mon          |         Tues         |         Wed          |         Thur         |          Fri          |         Sat         |         Sun         |
 | :------------------: | :------------------: | :------------------: | :------------------: | :-------------------: | :-----------------: | :-----------------: |
 |                      |                      |                      | 30<br>([D0](#day-0)) | 1 <br> ([D1](#day-1)) | 2<br>([D2](#day-2)) | 3<br>([D3](#day-3)) |
-| 4<br/>([D4](#day-4)) | 5<br/>([D5](#day-5)) | 6<br/>([D6](#day-6)) | 7<br/>([D7](#day-7)) |                       |                     |                     |
+| 4<br/>([D4](#day-4)) | 5<br/>([D5](#day-5)) | 6<br/>([D6](#day-6)) | 7<br/>([D7](#day-7)) | 8<br/>([D8](#day-8))  |                     |                     |
 |                      |                      |                      |                      |                       |                     |                     |
 |                      |                      |                      |                      |                       |                     |                     |
 |                      |                      |                      |                      |                       |                     |                     |
@@ -212,3 +212,20 @@ OS Training Camp Daily Documents
 可以把lab看起来了(每日1h?)
 
 rv任务:阅读《计算机组成与设计（RISC-V版）》第一、二章;自学RISC-V手册：一本开源指令集的指南(重点是第10章)
+
+
+
+
+
+
+
+<h2 id="day-7">Day 7 2022/7/7</h2>
+
+[今日笔记](https://github.com/CelestialMelody/daily_schedule_for_os_traning_camp_2022/blob/main/note/day%20eight/Day%20eight.md)
+
+#### rust学习
+
+**rustlings**
+
+- 错误处理6，挺难的
+- 做到智能指针了（standard_library_types）
