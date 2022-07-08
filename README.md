@@ -195,7 +195,7 @@ OS Training Camp Daily Documents
 
 
 
-<h2 id="day-8">Day 8 2022/7/8</h2>
+<h2 id="day-7">Day 7 2022/7/7</h2>
 
 [今日笔记](https://github.com/CelestialMelody/daily_schedule_for_os_traning_camp_2022/blob/main/note/day%20seven/Day%20seven.md)
 
@@ -219,7 +219,7 @@ rv任务:阅读《计算机组成与设计（RISC-V版）》第一、二章;自�
 
 
 
-<h2 id="day-7">Day 7 2022/7/7</h2>
+<h2 id="day-8">Day 8 2022/7/8</h2>
 
 [今日笔记](https://github.com/CelestialMelody/daily_schedule_for_os_traning_camp_2022/blob/main/note/day%20eight/Day%20eight.md)
 
