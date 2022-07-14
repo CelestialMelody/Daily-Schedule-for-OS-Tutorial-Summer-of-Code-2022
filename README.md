@@ -244,7 +244,7 @@ rv任务:阅读《计算机组成与设计（RISC-V版）》第一、二章;自�
 
 [day 10 笔记](https://github.com/CelestialMelody/daily_schedule_for_os_traning_camp_2022/blob/main/note/day%20ten/Day%20ten.md)
 
-day 11-12 笔记
+[day 11-12 笔记](https://github.com/CelestialMelody/daily_schedule_for_os_traning_camp_2022/blob/main/note/day%20eleven_twelve/Day%20eleven_twelve.md)
 
 前两天基本上在摸鱼，没做什么关于本项目的事情，现在开始好好学习（x
 
@@ -280,7 +280,7 @@ ricv-32是我们计组课指令系统与控制器学习的指令集，虽然不�
 
 <h2 id="day-13">Day 13 2022/7/13</h2>
 
-今日笔记
+[今日笔记](https://github.com/CelestialMelody/daily_schedule_for_os_traning_camp_2022/blob/main/note/day%20thirteen/Day%20thirteen.md)
 
 #### 完成情况
 
