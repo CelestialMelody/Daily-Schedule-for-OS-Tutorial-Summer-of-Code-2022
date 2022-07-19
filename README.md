@@ -15,7 +15,7 @@ OS Training Camp Daily Documents
 |                                     |                                     |                         |     30<br>([D0](#day-0))      |     1 <br> ([D1](#day-1))     |   2<br>([D2](#day-2))   |         3<br>([D3](#day-3))         |
 |        4<br/>([D4](#day-4))         |        5<br/>([D5](#day-5))         |  6<br/>([D6](#day-6))   |     7<br/>([D7](#day-7))      |     8<br/>([D8](#day-8))      |  9<br/>([D9](#day-9))   | 10<br/>([D10-11-12](#day-10-11-12)) |
 | 11<br/>([D10-11-12](#day-10-11-12)) | 12<br/>([D10-11-12](#day-10-11-12)) | 13<br/>([D13](#day-13)) | 14<br/>([D14-15](#day-14-15)) | 15<br/>([D14-15](#day-14-15)) | 16<br/>([D16](#day-16)) |    17<br/>([D17-18](#day-17-18))    |
-|    18<br/>([D17-18](#day-17-18))    |                                     |                         |                               |                               |                         |                                     |
+|    18<br/>([D17-18](#day-17-18))    |       19<br/>([D19](#day-19))       |                         |                               |                               |                         |                                     |
 |                                     |                                     |                         |                               |                               |                         |                                     |
 
 **八月**
@@ -367,6 +367,9 @@ day 15可以说在摸鱼哈哈哈，所以这合并了
 
 **事件2** 跟着[os-comp2022第二章文档](https://learningos.github.io/rust-based-os-comp2022/chapter2/index.html)做实验
 
+- 本实验不需要做任何操作，只用完成
+  1. 接收 [第二个实验练习的github classroom在线邀请](https://classroom.github.com/a/UEOvz4qO)
+  2. `make codespaces_setenv`
+  3. `make setupclassroom_test2`
 
-
-#### 其他
+​	即可，关键应该是了解（最好做到理解做了什么）

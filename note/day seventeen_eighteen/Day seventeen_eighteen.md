@@ -40,18 +40,37 @@
 - [特权级切换的起因](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter2/4trap-handling.html#id3)
 - [特权级切换相关的控制状态寄存器](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter2/4trap-handling.html#id4)
   - [进入S特权级Trap的相关CSR](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter2/4trap-handling.html#id4:~:text=%E8%BF%9B%E5%85%A5%20S%20%E7%89%B9%E6%9D%83%E7%BA%A7%20Trap%20%E7%9A%84%E7%9B%B8%E5%85%B3%20CSR)
-
 - [特权级切换](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter2/4trap-handling.html#id5)
-
 - [特权级切换的硬件控制机制](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter2/4trap-handling.html#trap-hw-mechanism)
-
 - [用户栈与内核栈](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter2/4trap-handling.html#id7)
 - [Trap 上下文的保存与恢复](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter2/4trap-handling.html#id8)
 - [Trap 分发与处理](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter2/4trap-handling.html#id9)
 - [实现系统调用功能](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter2/4trap-handling.html#id10)
-
 - CSR 相关原子指令
 - sscratch CSR 的用途：中转寄存器，从用户栈到内核栈的切换
 - [执行应用程序](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter2/4trap-handling.html#ch2-app-execution)
   - 从操作系统内核返回到运行应用程序之前要完成的工作
-  - 
+
+---
+
+### lab0-1
+
+- [inline assembly](https://doc.rust-lang.org/nightly/reference/inline-assembly.html)
+- 代码目录：`os2` `user`
+- 本实验不需要做任何操作，只用完成
+  1. 接收 [第二个实验练习的github classroom在线邀请](https://classroom.github.com/a/UEOvz4qO)
+  2. `make codespaces_setenv`
+  3. `make setupclassroom_test2`
+
+​	即可，关键应该是了解（最好做到理解做了什么）
+
+---
+
+### Rust
+
+**复习**
+
+>1. **发散函数**（diverging function）没有返回值，它使用感叹号 `!` 作为返回类型。发散函数一般都以 `panic!` 宏调用或调用其他发散函数结束，所以，调用发散函数会导致当前线程崩溃
+
+
+
