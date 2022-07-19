@@ -342,7 +342,7 @@ day 15可以说在摸鱼哈哈哈，所以这合并了
 
 <h2 id="day-17-18">Day 17-18 2022/7/17-18</h2>
 
-今日笔记
+[今日笔记](https://github.com/CelestialMelody/daily_schedule_for_os_traning_camp_2022/blob/main/note/day%20seventeen_eighteen/Day%20seventeen_eighteen.md)
 
 #### 完成情况
 
