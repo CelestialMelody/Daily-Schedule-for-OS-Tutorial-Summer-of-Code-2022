@@ -196,11 +196,46 @@
 
 - `pub enum TaskStatus` 
 
+- 任务控制块 (Task Control Block) `pub struct TaskControlBlock`
 
 
 
+**任务管理器**
+
+- 一个全局的任务管理器来管理这些用任务控制块描述的应用
+- `os3/src/task/mod.rs` `pub struct TaskManager` `struct TaskManagerInner`
+- 初始化 `TaskManager` 的全局实例 `TASK_MANAGER`；`os/src/task/mod.rs`
 
 
+
+[实现 sys_yield 和 sys_exit 系统调用](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter3/3multiprogramming.html#sys-yield-sys-exit)
+
+- `sys_yield` 表示应用自己暂时放弃对CPU的当前使用权，进入 `Ready` 状态
+
+- `sys_exit` 表示应用退出执行，它的含义是退出当前的应用并切换到下个应用
+
+- 在实际切换之前我们需要手动 `drop` 掉我们获取到的 `TaskManagerInner` 的来自 `UPSafeCell` 的借用标记
+
+
+
+运行状态变化图
+
+<img src="./pic/fsm-coop.png" alt="../_images/fsm-coop.png" style="zoom:50%;" />
+
+
+
+[第一次进入用户态](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter3/3multiprogramming.html#id7)
+
+- 调用 `init_app_cx` 构造该任务的 Trap 上下文（包括应用入口地址和用户栈指针）并将其压入到内核栈顶
+
+- 调用 `TaskContext::goto_restore` 来构造每个任务保存在任务控制块中的任务上下文
+
+- `rust_main` 中调用 `task::run_first_task` 来开始应用的执行
+  - `__switch` 第一个参数 ` &mut _unused as *mut TaskContext；`
+  - `__switch` 有两个参数分别表示当前应用和即将切换到的应用的任务上下文指针，其第一个参数存在的意义是记录当前应用的任务上下文被保存在哪里，也就是当前应用内核栈的栈顶，这样之后才能继续执行该应用。但在 `run_first_task` 的时候，我们并没有执行任何应用， `__switch` 前半部分的保存仅仅是在启动栈上保存了一些之后不会用到的数据，自然也无需记录启动栈栈顶的位置
+  - 因此，显式在启动栈上分配了一个名为 `_unused` 的任务上下文，并将它的地址作为第一个参数传给 `__switch` ，这样保存一些寄存器之后的启动栈栈顶的位置将会保存在此变量中
+  - 然而无论是此变量还是启动栈我们之后均不会涉及到，一旦应用开始运行，我们就开始在应用的用户栈和内核栈之间开始切换了
+  - 这里声明此变量的意义仅仅是为了避免覆盖到其他数据
 
 
 
@@ -282,15 +317,45 @@ M 特权级的 CSR
 
 - `get_time_us` 以微秒为单位返回当前计数器的值
 
+>评论解答：
+>
+>`CLOCK_FREQ`是时钟频率，而计数器也是对该时钟的时钟周期进行计数，因此`CLOCK_FREQ`也是一秒之内计数器的增量。而我们将一秒钟分为`TICKS_PER_SEC`，也即100个时间片，每个时间片10ms，那么每个时间片内计数器的增量就应该是一秒内的总体增量除以这个整体被分为的份数，所以是`CLOCK_FREQ/100`。
+>
+>对于这句话
+>	“RISC-V 架构要求处理器要有一个内置时钟，其频率一般低于 CPU 主频”，
+>	实际上在 CPU 的微架构内通常有多个不同频率的时钟源（比如各种晶振等），然后他们进行一些组合电路的处理又会得到更多不同频率的信号，不同的电路模块可能使用不同频率的时钟信号以满足同步需求。CPU 的主体流水线所采用的时钟信号的频率是 CPU 的主频，但同时还有另一个用来计时的时钟模块（也就是上面提到的时钟）运行在另一个不同的频率。他们两个的另一个区别是，CPU 的时钟周期在`mcycle`寄存器中计数，而时钟的时钟周期在`mtime`寄存器中计数，因此这是两个独立且不同的频率。
 
-
+>拓展
+>
 >[clock ticks](https://baike.baidu.com/item/tick/1202967) （脉冲 点 时间点） 与 clock cycle（时钟周期 时间段）
 >
->产生一个tick的时间（脉冲时间 晶体滴答或者震荡一次的时间）是时钟周期？
+>产生一个tick的时间（脉冲时间 晶体滴答或者震荡一次的时间）是时钟周期
 
 
 
+**抢占式调度**
 
+- 在 `trap_handler` 函数下新增一个条件分支跳转，当发现触发了一个 S 特权级时钟中断的时候，首先重新设置一个 10ms 的计时器，然后调用 `suspend_current_and_run_next` 函数暂停当前应用并切换到下一个
+
+- 避免 S 特权级时钟中断被屏蔽 初始化设置
+
+  > 没有将应用初始 Trap 上下文中的 `sstatus` 中的 `SPIE` 位置为 1 。这将意味着 CPU 在用户态执行应用的时候 `sstatus` 的 `SIE` 为 0 ，根据定义来说，此时的 CPU 会屏蔽 S 态所有中断，自然也包括 S 特权级时钟中断。
+  >
+  > 但是可以观察到我们的应用在用尽一个时间片之后能够正常被打断。这是因为当 CPU 在 **U 态接收到一个 S 态**时钟中断时会被抢占，这时无论 `SIE` 位是否被设置都会进入 Trap 处理流程。
+
+  > 评论解答：
+  >
+  > sstatus 下的 SIE 位只控制着在 S 模式下的中断使能，如果 sstatus.SIE 标记为 0，则在 S 模式下不会响应中断；
+  >
+  > **但如果控制流在 U 模式下时，sstatus.SIE 位是不会影响中断响应判断的，此时任何 S 特权级的中断都会被响应。**
+
+- 通过 yield 来优化 **轮询** (Busy Loop) 过程带来的 CPU 资源浪费
+
+>[risc-v 寄存器](https://zhuanlan.zhihu.com/p/486528142)
+>
+>spie：表明在进入到S模式前，是否 S interrupt
+>
+>sie：S 中断使能位
 
 ---
 
