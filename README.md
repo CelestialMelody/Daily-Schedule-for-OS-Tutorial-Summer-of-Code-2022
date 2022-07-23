@@ -378,8 +378,11 @@ day 15可以说在摸鱼哈哈哈，所以这合并了
 
 <h2 id="day-19-20">Day 19-20 2022/7/19-20</h2>
 
-今日笔记
+[今日笔记](https://github.com/CelestialMelody/daily_schedule_for_os_traning_camp_2022/blob/main/note/day%20nineteen_twenty/Day%20nineteen_twenty.md)
 
 #### 完成情况
 
 **事件** 阅读lab-1文档：[多道程序与分时多任务](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter3/index.html)
+
+
+
