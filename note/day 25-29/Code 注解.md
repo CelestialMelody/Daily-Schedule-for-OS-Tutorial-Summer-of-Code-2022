@@ -764,6 +764,7 @@ impl MapArea {
         let mut start: usize = 0;
         let mut current_vpn = self.vpn_range.get_start();
         let len = data.len();
+        // 循环会遍历每一个需要拷贝数据的虚拟页面
         loop {
             let src = &data[start..len.min(start + PAGE_SIZE)];
             let dst = &mut page_table
@@ -776,10 +777,14 @@ impl MapArea {
             if start >= len {
                 break;
             }
-            current_vpn.step();
+            current_vpn.step(); // os/src/mm/address.rs VirtPageNum 实现的 StepOne Trait
         }
     }
 }
 ```
 
 - `map` 与 `unmap` 的实现是遍历逻辑段中的所有虚拟页面，并以 每个虚拟页面 为单位依次在多级页表中进行键值对的插入或删除，分别对应 `MapArea` 的 `map_one` 和 `unmap_one` 方法
+
+- `copy_data` 调用它的时候需要满足：切片 `data` 中的数据大小不超过当前逻辑段的总大小，且切片中的数据会被对齐到逻辑段的开头，然后逐页拷贝到实际的物理页帧
+
+  每个页面的数据拷贝需要确定源 `src` 和目标 `dst` 两个切片并直接使用 `copy_from_slice` 完成复制。当确定目标切片 `dst` 的时候，从传入的当前逻辑段所属的地址空间的多级页表中，手动查找迭代到的虚拟页号被映射到的物理页帧，并通过 `get_bytes_array` 方法获取该物理页帧的字节数组型可变引用，最后再获取它的切片用于数据拷贝。
